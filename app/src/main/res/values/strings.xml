@@ -9,4 +9,6 @@
 
     <string name="menu_home">Buscar...</string>
     <string name="menu_gallery">Acerca de</string>
+    <string name="key_word">Palabra clave</string>
+    <string name="button_search">Buscar</string>
 </resources>

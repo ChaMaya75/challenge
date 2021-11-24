@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.cml.challenge.ui.home.SearchFragment"
+        android:name="com.cml.challenge.ui.search.SearchFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_serch" />
+        tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.cml.challenge.ui.gallery.AboutFragment"
+        android:name="com.cml.challenge.ui.about.AboutFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_about" />
 

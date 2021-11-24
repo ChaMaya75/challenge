@@ -1,4 +1,4 @@
-package com.cml.challenge.ui.gallery
+package com.cml.challenge.ui.about
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

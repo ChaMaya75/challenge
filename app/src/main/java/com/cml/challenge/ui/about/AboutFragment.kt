@@ -1,4 +1,4 @@
-package com.cml.challenge.ui.gallery
+package com.cml.challenge.ui.about
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,7 +22,7 @@ class AboutFragment : Fragment() {
         galleryViewModel =
                 ViewModelProvider(this).get(AboutViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_about, container, false)
-        val textView: TextView = root.findViewById(R.id.text_gallery)
+        val textView: TextView = root.findViewById(R.id.text_search)
         galleryViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
