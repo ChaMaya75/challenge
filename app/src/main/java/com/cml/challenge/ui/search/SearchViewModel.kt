@@ -10,4 +10,8 @@ class SearchViewModel : ViewModel() {
         value = "Buscador de productos"
     }
     val text: LiveData<String> = _text
+
+    fun isSearchValid(): Boolean {
+        return (_text.value.isNullOrEmpty())
+    }
 }
