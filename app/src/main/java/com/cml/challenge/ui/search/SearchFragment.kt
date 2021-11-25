@@ -41,8 +41,6 @@ class SearchFragment : Fragment() {
         //val buttonSearch : Button = root.findViewById(R.id.button_search)
         //buttonSearch.setOnClickListener { onSearch()}
         return binding.root
-
-
     }
     private fun onSearch() {
         //val searchText : EditText = root.findViewById(R.id.editTextText_Search)
