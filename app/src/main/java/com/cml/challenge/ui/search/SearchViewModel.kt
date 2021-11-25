@@ -6,9 +6,11 @@ import androidx.lifecycle.ViewModel
 
 class SearchViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "Buscador de productos"
+    val textSearch = MutableLiveData<String>()
+    init {
+        textSearch.value = ""
     }
-    val text: LiveData<String> = _text
-
+    fun isEmptySearch(): Boolean {
+        return textSearch.value.isNullOrEmpty()
+    }
 }

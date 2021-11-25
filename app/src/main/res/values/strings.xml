@@ -13,4 +13,6 @@
     <string name="button_search">Buscar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_title">Buscador de productos</string>
+    <string name="required">Campo requerido</string>
 </resources>
