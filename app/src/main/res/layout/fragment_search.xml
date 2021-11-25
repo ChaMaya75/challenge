@@ -30,7 +30,6 @@
         android:ems="10"
         android:hint="@string/key_word"
         android:inputType="textPersonName"
-        android:onClick="onSearch()"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

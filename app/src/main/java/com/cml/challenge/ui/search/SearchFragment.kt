@@ -9,16 +9,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.cml.challenge.R
+import com.cml.challenge.utilities.Utilities
 
 class SearchFragment : Fragment() {
 
     private lateinit var searchViewModel: SearchViewModel
+    private lateinit var root : View
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -27,48 +31,22 @@ class SearchFragment : Fragment() {
     ): View? {
         searchViewModel =
                 ViewModelProvider(this).get(SearchViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_search, container, false)
+        root = inflater.inflate(R.layout.fragment_search, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
         searchViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         val buttonSearch : Button = root.findViewById(R.id.button_search)
-        buttonSearch.setOnClickListener({ onSearch()})
+        buttonSearch.setOnClickListener { onSearch()}
         return root
     }
     private fun onSearch() {
-        if(isNetworkAvailable(this.context)) {
+        val searchText : EditText = root.findViewById(R.id.editTextText_Search)
+        if(Utilities.isNetworkAvailable(this.context)) {
             Toast.makeText(requireContext(), "Si hay internet", Toast.LENGTH_LONG).show()
+            root.findNavController().navigate(R.id.action_nav_search_to_productsFragment)
         }else{
-            Toast.makeText(requireContext(), "No hay", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), "No hay internet", Toast.LENGTH_LONG).show()
         }
-    }
-
-    //Esta utileria puede quedar en otro package
-    private fun isNetworkAvailable(context: Context?): Boolean {
-        if (context == null) return false
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-            if (capabilities != null) {
-                when {
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
-                        return true
-                    }
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
-                        return true
-                    }
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
-                        return true
-                    }
-                }
-            }
-        } else {
-            val activeNetworkInfo = connectivityManager.activeNetworkInfo
-            if (activeNetworkInfo != null && activeNetworkInfo.isConnected) {
-                return true
-            }
-        }
-        return false
     }
 }

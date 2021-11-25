@@ -9,12 +9,21 @@
         android:id="@+id/nav_search"
         android:name="com.cml.challenge.ui.search.SearchFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_nav_search_to_productsFragment"
+            app:destination="@id/productsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_about"
         android:name="com.cml.challenge.ui.about.AboutFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.cml.challenge.ui.products.ProductsFragment"
+        android:label="fragment_products"
+        tools:layout="@layout/fragment_products" />
 
 </navigation>
