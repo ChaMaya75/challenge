@@ -17,11 +17,11 @@ class ProductViewModel : ViewModel() {
     val isLoading = MutableLiveData<Boolean>()
     var getProduct = GetProductos()
 
+
     fun getProductModel(){
         val currentProduct:ProductModel = ProductProvider.getProduct(0)
     }
-    fun onCreate(query: String) {
-        viewModelScope.launch {
+    suspend fun search(query: String):List<ItemSearch> {
         isLoading.postValue(true)
             val result: APIResponseSearch? = getProduct(query)
             if(result != null){
@@ -32,10 +32,11 @@ class ProductViewModel : ViewModel() {
                     it.id
                 }
                 isLoading.postValue(false)
-            }else{
-                Log.i("***","Fallo al recuperar la lista")
+                return result.results
+            }else {
+                Log.i("***", "Fallo al recuperar la lista")
                 isLoading.postValue(false)
             }
-        }
+        return emptyList()
     }
 }
