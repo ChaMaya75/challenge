@@ -5,11 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.cml.challenge.R
 import com.cml.challenge.databinding.FragmentProductsBinding
-import com.cml.challenge.databinding.FragmentSearchBinding
-import com.cml.challenge.ui.search.SearchViewModel
 
 
 class ProductsFragment : Fragment() {
@@ -32,6 +31,11 @@ class ProductsFragment : Fragment() {
 
         binding = FragmentProductsBinding.inflate(inflater, container, false)
 
+        productViewModel.isLoading.observe(this, Observer {
+            binding.loading.isVisible = it
+        })
+
+        productViewModel.onCreate("xbox360")
         return binding.root
     }
 }
