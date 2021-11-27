@@ -55,9 +55,9 @@ class ProductsFragment : Fragment() {
         adapter = ProductAdapter(itemsProducts)
         binding.rvProducts.layoutManager = LinearLayoutManager(this.context)
         binding.rvProducts.adapter = adapter
-        searchProduct("")
+        searchProduct()
     }
-    private fun searchProduct(query:String){
+    private fun searchProduct(){
         itemsProducts.clear()
         val query: String = arguments?.get("search").toString()
 
