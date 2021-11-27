@@ -10,7 +10,7 @@ import java.net.URL
 import java.text.NumberFormat
 import java.util.*
 
-class ProductViewHolder (view:View):RecyclerView.ViewHolder(view){
+class ProductViewHolder (view:View,listener:ProductAdapter.onItemClickListener):RecyclerView.ViewHolder(view){
     private val binding = ItemProductBinding.bind(view)
     fun bind(item:ItemSearch){
 
@@ -23,5 +23,10 @@ class ProductViewHolder (view:View):RecyclerView.ViewHolder(view){
             URL("https", oldUrl.getHost(), oldUrl.getPort(), oldUrl.getFile())
         Log.i("***", newUrl.path)
         Picasso.get().load(newUrl.toExternalForm()).into(binding.imageProduct)
+    }
+    init {
+        itemView.setOnClickListener {
+            listener.onItemClick(adapterPosition)
+        }
     }
 }

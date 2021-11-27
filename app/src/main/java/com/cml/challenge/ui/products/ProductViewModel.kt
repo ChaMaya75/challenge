@@ -39,4 +39,12 @@ class ProductViewModel : ViewModel() {
             }
         return emptyList()
     }
+    init {
+        Log.i("***","ProducModel Creado")
+    }
+
+    override fun onCleared() {
+        Log.i("***","ProducModel Borrado!!!")
+        super.onCleared()
+    }
 }

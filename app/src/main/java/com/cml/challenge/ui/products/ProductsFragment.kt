@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -55,6 +56,13 @@ class ProductsFragment : Fragment() {
         adapter = ProductAdapter(itemsProducts)
         binding.rvProducts.layoutManager = LinearLayoutManager(this.context)
         binding.rvProducts.adapter = adapter
+        adapter.setOnItemClickListener(object : ProductAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+
+                Toast.makeText(activity,"Item: ${adapter.items[position].title}",Toast.LENGTH_LONG).show()
+            }
+
+        })
         searchProduct()
     }
     private fun searchProduct(){
