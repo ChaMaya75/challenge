@@ -43,7 +43,6 @@ class ProductsFragment : Fragment() {
         productViewModel.isLoading.observe(this, Observer {
             binding.loading.isVisible = it
         })
-
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,8 +59,10 @@ class ProductsFragment : Fragment() {
     }
     private fun searchProduct(query:String){
         itemsProducts.clear()
+        val query: String = arguments?.get("search").toString()
+
         CoroutineScope(Dispatchers.IO).launch {
-            val productos : List<ItemSearch> = productViewModel.search("xbox360")
+            val productos : List<ItemSearch> = productViewModel.search(query)
             itemsProducts.addAll(productos)
             activity?.runOnUiThread {
                 adapter.notifyDataSetChanged()

@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ProductApiClient {
-    @GET("/sites/MLA/search?")
+    @GET("/sites/MLM/search?")
     suspend fun searchItems(
         @Query("q") textSearch: String
     ): Response<APIResponseSearch>

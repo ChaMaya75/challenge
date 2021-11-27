@@ -7,11 +7,16 @@ import com.cml.challenge.data.network.ItemSearch
 import com.cml.challenge.databinding.ItemProductBinding
 import com.squareup.picasso.Picasso
 import java.net.URL
+import java.text.NumberFormat
+import java.util.*
 
 class ProductViewHolder (view:View):RecyclerView.ViewHolder(view){
     private val binding = ItemProductBinding.bind(view)
     fun bind(item:ItemSearch){
-        Log.i("***", item.thumbnail)
+
+        binding.tvTitulo.text = item.title
+        val format: NumberFormat = NumberFormat.getCurrencyInstance(Locale.US)
+        binding.tvPrecio.text = format.format(item.price)
         //Picasso.get().load(item.thumbnail).into(binding.imageProduct)
         val oldUrl = URL(item.thumbnail)
         val newUrl =

@@ -43,17 +43,15 @@ class SearchFragment : Fragment() {
         return binding.root
     }
     private fun onSearch() {
-        //val searchText : EditText = root.findViewById(R.id.editTextText_Search)
         if(searchViewModel.isEmptySearch()){
             binding.editTextTextSearch.error = getString(R.string.required)
-            //Toast.makeText(requireContext(), "esta vacio", Toast.LENGTH_LONG).show()
             return
         }
         if(Utilities.isNetworkAvailable(this.context)) {
-            //Toast.makeText(requireContext(), "Si hay internet", Toast.LENGTH_LONG).show()
-            Navigation.findNavController(binding.root).navigate(R.id.action_nav_search_to_productsFragment)
+            val args = Bundle()
+            args.putString("search", binding.editTextTextSearch.text.toString())
+            Navigation.findNavController(binding.root).navigate(R.id.action_nav_search_to_productsFragment,args)
         }else{
-            //Toast.makeText(requireContext(), "No hay internet", Toast.LENGTH_LONG).show()
         }
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
