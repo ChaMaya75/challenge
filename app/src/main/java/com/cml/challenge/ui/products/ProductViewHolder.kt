@@ -11,13 +11,14 @@ import java.text.NumberFormat
 import java.util.*
 
 class ProductViewHolder (view:View,listener:ProductAdapter.onItemClickListener):RecyclerView.ViewHolder(view){
+
     private val binding = ItemProductBinding.bind(view)
+
     fun bind(item:ItemSearch){
 
         binding.tvTitulo.text = item.title
         val format: NumberFormat = NumberFormat.getCurrencyInstance(Locale.US)
         binding.tvPrecio.text = format.format(item.price)
-        //Picasso.get().load(item.thumbnail).into(binding.imageProduct)
         val oldUrl = URL(item.thumbnail)
         val newUrl =
             URL("https", oldUrl.getHost(), oldUrl.getPort(), oldUrl.getFile())

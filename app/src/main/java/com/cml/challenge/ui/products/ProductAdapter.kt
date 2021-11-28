@@ -9,6 +9,7 @@ import com.cml.challenge.data.network.ItemSearch
 class ProductAdapter (val items:List<ItemSearch>): RecyclerView.Adapter<ProductViewHolder>() {
 
     private lateinit var mListener : onItemClickListener
+
     interface onItemClickListener{
         fun onItemClick(position: Int)
     }
