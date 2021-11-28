@@ -48,11 +48,13 @@ class ProductsFragment : Fragment() {
         productViewModel.productModel.observe(this, Observer {
             adapter = ProductAdapter(it)
             binding.rvProducts.adapter = adapter
-            //productViewModel.productModel.postValue(it)
-            //binding.rvProducts.adapter!!.notifyDataSetChanged()
-            /*activity?.runOnUiThread {
-                adapter.notifyDataSetChanged()
-            }*/
+            adapter.setOnItemClickListener(object : ProductAdapter.onItemClickListener{
+                override fun onItemClick(position: Int) {
+
+                    Toast.makeText(activity,"Item: ${adapter.items[position].title}",Toast.LENGTH_LONG).show()
+                }
+
+            })
         })
         return binding.root
     }
@@ -66,12 +68,12 @@ class ProductsFragment : Fragment() {
         adapter = ProductAdapter(itemsProducts)
         binding.rvProducts.layoutManager = LinearLayoutManager(this.context)
         binding.rvProducts.adapter = adapter
-        /*adapter.setOnItemClickListener(object : ProductAdapter.onItemClickListener{
+        adapter.setOnItemClickListener(object : ProductAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
 
                 Toast.makeText(activity,"Item: ${adapter.items[position].title}",Toast.LENGTH_LONG).show()
             }
 
-        })*/
+        })
     }
 }
