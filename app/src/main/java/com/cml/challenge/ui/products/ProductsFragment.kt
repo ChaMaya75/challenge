@@ -8,19 +8,19 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cml.challenge.data.network.ItemSearch
 import com.cml.challenge.databinding.FragmentProductsBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
+import org.koin.androidx.scope.lifecycleScope
+import org.koin.androidx.viewmodel.scope.viewModel
+import org.koin.core.parameter.parametersOf
 
 
 class ProductsFragment : Fragment() {
 
-    private lateinit var productViewModel: ProductViewModel
+    private val productViewModel: ProductViewModel by lifecycleScope.viewModel(this){
+        parametersOf("xbox")
+    }
 
     private lateinit var binding: FragmentProductsBinding
 
@@ -36,13 +36,23 @@ class ProductsFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        productViewModel =
-                ViewModelProvider(this).get(ProductViewModel::class.java)
+        //productViewModel =
+          //      ViewModelProvider(this).get(ProductViewModel::class.java)
+        //productViewModel.query = arguments?.get("search").toString()
 
         binding = FragmentProductsBinding.inflate(inflater, container, false)
 
         productViewModel.isLoading.observe(this, Observer {
             binding.loading.isVisible = it
+        })
+        productViewModel.productModel.observe(this, Observer {
+            adapter = ProductAdapter(it)
+            binding.rvProducts.adapter = adapter
+            //productViewModel.productModel.postValue(it)
+            //binding.rvProducts.adapter!!.notifyDataSetChanged()
+            /*activity?.runOnUiThread {
+                adapter.notifyDataSetChanged()
+            }*/
         })
         return binding.root
     }
@@ -56,26 +66,12 @@ class ProductsFragment : Fragment() {
         adapter = ProductAdapter(itemsProducts)
         binding.rvProducts.layoutManager = LinearLayoutManager(this.context)
         binding.rvProducts.adapter = adapter
-        adapter.setOnItemClickListener(object : ProductAdapter.onItemClickListener{
+        /*adapter.setOnItemClickListener(object : ProductAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
 
                 Toast.makeText(activity,"Item: ${adapter.items[position].title}",Toast.LENGTH_LONG).show()
             }
 
-        })
-        searchProduct()
-    }
-    private fun searchProduct(){
-        itemsProducts.clear()
-        val query: String = arguments?.get("search").toString()
-
-        CoroutineScope(Dispatchers.IO).launch {
-            val productos : List<ItemSearch> = productViewModel.search(query)
-            itemsProducts.addAll(productos)
-            activity?.runOnUiThread {
-                adapter.notifyDataSetChanged()
-            }
-        }
-
+        })*/
     }
 }
