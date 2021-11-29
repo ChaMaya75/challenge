@@ -1,21 +1,25 @@
 package com.cml.challenge.ui.detail
 
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.cml.challenge.data.network.ItemSearch
+
+import com.cml.challenge.databinding.ItemDetailBinding
+import com.squareup.picasso.Picasso
+import java.net.URL
 
 
-class DetailViewHolder(view: View) : RecyclerView.ViewHolder (view) {
+class DetailViewHolder (view:View):RecyclerView.ViewHolder(view){
 
+    private val binding = ItemDetailBinding.bind(view)
 
-    /*fun bind(item: String){
-
-        binding.tvTitulo.text = item.title
-        val format: NumberFormat = NumberFormat.getCurrencyInstance(Locale.US)
-        binding.tvPrecio.text = format.format(item.price)
-        val oldUrl = URL(item.thumbnail)
+    fun bind(image: String){
+        val oldUrl = URL(image)
         val newUrl =
                 URL("https", oldUrl.getHost(), oldUrl.getPort(), oldUrl.getFile())
         Log.i("***", newUrl.path)
-        Picasso.get().load(newUrl.toExternalForm()).into(binding.imageProduct)
-    }*/
+        Picasso.get().load(newUrl.toExternalForm()).into(binding.imageDetail)
+    }
+
 }

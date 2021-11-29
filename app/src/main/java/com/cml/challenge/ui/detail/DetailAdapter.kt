@@ -7,7 +7,7 @@ import com.cml.challenge.R
 import com.cml.challenge.data.network.ItemSearch
 import com.cml.challenge.ui.products.ProductViewHolder
 
-class DetailAdapter(val items:List<String>) : RecyclerView.Adapter<DetailViewHolder>(){
+class DetailAdapter(private val items:List<String>) : RecyclerView.Adapter<DetailViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
         val layoutInflater : LayoutInflater = LayoutInflater.from(parent.context)
