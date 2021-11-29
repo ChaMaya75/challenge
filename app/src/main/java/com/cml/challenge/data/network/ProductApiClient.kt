@@ -13,5 +13,5 @@ interface ProductApiClient {
     @GET("/items?")
     suspend fun getItem(
         @Query("ids") idItem: String
-    ): List<APIResponseProduct>
+    ): Response<APIResponseProduct>
 }

@@ -17,4 +17,12 @@ class ProductService {
                 response.body()
         }
     }
+    suspend fun getDetail(query:String): APIResponseProduct?{
+        return withContext(Dispatchers.IO) {
+            val response: Response<APIResponseProduct> =
+                    retrofit.create(ProductApiClient::class.java).getItem(query)
+            Log.i("***","getDetail")
+            response.body()
+        }
+    }
 }
