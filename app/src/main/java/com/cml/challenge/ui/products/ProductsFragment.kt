@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.cml.challenge.R
 import com.cml.challenge.data.network.ItemSearch
 import com.cml.challenge.databinding.FragmentProductsBinding
 import org.koin.androidx.scope.lifecycleScope
@@ -19,7 +21,7 @@ import org.koin.core.parameter.parametersOf
 class ProductsFragment : Fragment() {
 
     private val productViewModel: ProductViewModel by lifecycleScope.viewModel(this){
-        parametersOf("xbox")
+        parametersOf(arguments?.get("search").toString())
     }
 
     private lateinit var binding: FragmentProductsBinding
@@ -42,16 +44,18 @@ class ProductsFragment : Fragment() {
 
         binding = FragmentProductsBinding.inflate(inflater, container, false)
 
-        productViewModel.isLoading.observe(this, Observer {
+        productViewModel.isLoading.observe(viewLifecycleOwner, Observer {
             binding.loading.isVisible = it
         })
-        productViewModel.productModel.observe(this, Observer {
+        productViewModel.productModel.observe(viewLifecycleOwner, Observer {
             adapter = ProductAdapter(it)
             binding.rvProducts.adapter = adapter
             adapter.setOnItemClickListener(object : ProductAdapter.onItemClickListener{
                 override fun onItemClick(position: Int) {
-
-                    Toast.makeText(activity,"Item: ${adapter.items[position].title}",Toast.LENGTH_LONG).show()
+                    //Toast.makeText(activity,"Item: ${adapter.items[position].title}",Toast.LENGTH_LONG).show()
+                    val args = Bundle()
+                    args.putString("idProduct", adapter.items[position].id)
+                    Navigation.findNavController(binding.root).navigate(R.id.action_productsFragment_to_detailFragment,args)
                 }
 
             })
@@ -68,12 +72,5 @@ class ProductsFragment : Fragment() {
         adapter = ProductAdapter(itemsProducts)
         binding.rvProducts.layoutManager = LinearLayoutManager(this.context)
         binding.rvProducts.adapter = adapter
-        adapter.setOnItemClickListener(object : ProductAdapter.onItemClickListener{
-            override fun onItemClick(position: Int) {
-
-                Toast.makeText(activity,"Item: ${adapter.items[position].title}",Toast.LENGTH_LONG).show()
-            }
-
-        })
     }
 }

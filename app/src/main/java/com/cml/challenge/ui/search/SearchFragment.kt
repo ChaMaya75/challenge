@@ -56,6 +56,6 @@ class SearchFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.searchviewmodel = searchViewModel;
+        binding.searchviewmodel = searchViewModel
     }
 }
