@@ -11,9 +11,12 @@ import kotlinx.coroutines.launch
 
 class DetailViewModel(private val query: String) : ViewModel() {
 
+    val isLoading = MutableLiveData<Boolean>()
     val detail = MutableLiveData<APIResponseProduct>()
 
     suspend fun search(query: String): APIResponseProduct{
+
+        isLoading.postValue(true)
         val repository = ProductRepository()
         val result: APIResponseProduct? = repository.getDetailProduct(query)
         if(result != null){
@@ -22,11 +25,11 @@ class DetailViewModel(private val query: String) : ViewModel() {
             result.body.pictures.forEach{
                 Log.i("***", it.secure_url.toString())
             }
-            //isLoading.postValue(false)
+            isLoading.postValue(false)
             return result
         }else {
             Log.i("***", "Fallo al recuperar objeto")
-            //isLoading.postValue(false)
+            isLoading.postValue(false)
         }
         return result!!
     }

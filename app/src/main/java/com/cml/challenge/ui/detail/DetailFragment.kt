@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cml.challenge.databinding.FragmentDetailBinding
@@ -29,6 +30,10 @@ class DetailFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         binding = FragmentDetailBinding.inflate(inflater,container,false)
+
+        detailFragmentViewModel.isLoading.observe(viewLifecycleOwner, Observer {
+            binding.loadingDetail.isVisible = it
+        })
 
         detailFragmentViewModel.detail.observe(viewLifecycleOwner, Observer {
             adapter = DetailAdapter(it)
