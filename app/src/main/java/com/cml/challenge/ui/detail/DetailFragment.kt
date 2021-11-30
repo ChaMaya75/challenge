@@ -9,11 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cml.challenge.R
 import com.cml.challenge.databinding.FragmentDetailBinding
 import com.cml.challenge.utilities.Utilities
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 import org.koin.core.parameter.parametersOf
+import java.text.NumberFormat
+import java.util.*
 
 
 class DetailFragment : Fragment() {
@@ -41,16 +44,30 @@ class DetailFragment : Fragment() {
         detailFragmentViewModel.detail.observe(viewLifecycleOwner, Observer {
             adapter = DetailAdapter(it)
             binding.rvDetail.adapter = adapter
+            binding.tvTitle?.text = it.body.title
+            val format: NumberFormat = NumberFormat.getCurrencyInstance(Locale.US)
+            binding.tvPrice.text = format.format(it.body.price)
+            binding.tvAvailable.text = it.body.available_quantity.toString()
+            binding.tvSold.text = it.body.sold_quantity.toString()
+            if(it.body.condition.equals("new")){
+                binding.tvCondition.text = getString(R.string.lbl_new)
+            }else{
+                binding.tvCondition.text = getString(R.string.lbl_notnew)
+            }
+
+            if(binding.indexrv.text.isNullOrEmpty())
+                binding.indexrv.text = "1/${it.body.pictures.size}"
+
+
         })
         detailFragmentViewModel.indeximageshow.observe(viewLifecycleOwner, Observer {
-            binding.indexrv?.text = it
+            binding.indexrv.text = it
         })
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.detailViewModel = detailFragmentViewModel
-
 
         initRecycleView()
     }

@@ -15,4 +15,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_title">Buscador de productos</string>
     <string name="required">Campo requerido</string>
+    <string name="lbl_price">Precio</string>
+    <string name="lbl_codition">Codicion</string>
+    <string name="lbl_new">Nuevo</string>
+    <string name="lbl_notnew">Usado</string>
+    <string name="lbl_available">Disponible</string>
+    <string name="lbl_sold">Cantidad vendida</string>
 </resources>

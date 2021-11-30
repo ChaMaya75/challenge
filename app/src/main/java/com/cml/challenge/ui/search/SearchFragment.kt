@@ -38,7 +38,7 @@ class SearchFragment : Fragment() {
             textView.text = it
         })*/
         binding = FragmentSearchBinding.inflate(inflater, container, false)
-        binding.buttonSearch.setOnClickListener{view: View->
+        binding.buttonSearch.setOnClickListener{
             onSearch()
         }
         //val buttonSearch : Button = root.findViewById(R.id.button_search)
