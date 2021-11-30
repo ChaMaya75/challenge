@@ -3,6 +3,7 @@ package com.cml.challenge.ui.products
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.cml.challenge.R
 import com.cml.challenge.data.network.ItemSearch
 import com.cml.challenge.databinding.ItemDetailBinding
 import com.cml.challenge.databinding.ItemProductBinding
@@ -24,7 +25,12 @@ class ProductViewHolder (view:View,listener:ProductAdapter.onItemClickListener):
         val newUrl =
             URL("https", oldUrl.getHost(), oldUrl.getPort(), oldUrl.getFile())
         Log.i("***", newUrl.path)
-        Picasso.get().load(newUrl.toExternalForm()).into(binding.imageProduct)
+
+        val picasso : Picasso = Picasso.get()
+        picasso.load(newUrl.toExternalForm())
+                .placeholder(R.drawable.progress_animation)
+                .into(binding.imageProduct)
+
     }
     init {
         itemView.setOnClickListener {
