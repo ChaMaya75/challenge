@@ -19,10 +19,10 @@ class ProductService {
     }
     suspend fun getDetail(query:String): APIResponseProduct?{
         return withContext(Dispatchers.IO) {
-            val response: Response<APIResponseProduct> =
+            val response: Response<List<APIResponseProduct>> =
                     retrofit.create(ProductApiClient::class.java).getItem(query)
             Log.i("***","getDetail")
-            response.body()
+            response.body()?.get(0)
         }
     }
 }

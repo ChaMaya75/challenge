@@ -1,6 +1,8 @@
 package com.cml.challenge
 
 import android.app.Application
+import com.cml.challenge.ui.detail.DetailFragment
+import com.cml.challenge.ui.detail.DetailViewModel
 import com.cml.challenge.ui.products.ProductViewModel
 import com.cml.challenge.ui.products.ProductsFragment
 import org.koin.android.ext.koin.androidContext
@@ -35,8 +37,7 @@ private val scopesModule = module {
         viewModel { (query: String) -> ProductViewModel(query) }
     }
 
-    /*scope(named<DetailFragment>()) {
-        viewModel { (idItem: String) -> DetailViewModel(idItem, get()) }
-        scoped { GetItem(get()) }
-    }*/
+    scope(named<DetailFragment>()) {
+        viewModel { (idItem: String) -> DetailViewModel(idItem) }
+    }
 }

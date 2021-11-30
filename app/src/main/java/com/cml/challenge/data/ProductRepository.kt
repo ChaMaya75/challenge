@@ -18,7 +18,7 @@ class ProductRepository {
         }
     }
     suspend fun getDetailProduct(query: String): APIResponseProduct? {
-        Log.i("***","getAllProducts")
+        Log.i("***","getDetail")
         try {
             return api.getDetail(query)
         }
