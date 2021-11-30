@@ -16,12 +16,28 @@
         android:layout_height="match_parent"
         tools:context=".ui.products.ProductsFragment">
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvDetail"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDetail"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.4"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_weight="0.6">
+            <TextView
+                android:id="@+id/indexrv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="1/6"/>
+            </LinearLayout>
+        </LinearLayout>
         <ProgressBar
             android:id="@+id/loadingDetail"
             android:layout_width="wrap_content"

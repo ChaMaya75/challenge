@@ -4,6 +4,12 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import androidx.recyclerview.widget.LinearLayoutManager
+
+import androidx.recyclerview.widget.RecyclerView
+
+
+
 
 class Utilities {
     companion object {
@@ -34,6 +40,18 @@ class Utilities {
                 }
             }
             return false
+        }
+
+        fun getLastVisiblePosition(rv: RecyclerView?): Int {
+            if (rv != null) {
+                val layoutManager = rv
+                        .layoutManager
+                if (layoutManager is LinearLayoutManager) {
+                    return layoutManager
+                            .findLastVisibleItemPosition()
+                }
+            }
+            return 0
         }
     }
 }

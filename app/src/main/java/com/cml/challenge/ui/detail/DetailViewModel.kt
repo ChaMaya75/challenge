@@ -13,6 +13,7 @@ class DetailViewModel(private val query: String) : ViewModel() {
 
     val isLoading = MutableLiveData<Boolean>()
     val detail = MutableLiveData<APIResponseProduct>()
+    val indeximageshow = MutableLiveData<String>()
 
     suspend fun search(query: String): APIResponseProduct{
 

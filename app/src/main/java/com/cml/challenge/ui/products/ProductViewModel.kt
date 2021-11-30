@@ -36,6 +36,7 @@ class ProductViewModel(private val query: String) : ViewModel() {
     init {
         Log.i("***","ProducModel Creado")
         searchProduct()
+
     }
 
     override fun onCleared() {
