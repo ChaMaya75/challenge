@@ -2,7 +2,6 @@ package com.cml.challenge.data.network
 
 import android.util.Log
 import com.cml.challenge.core.RetrofitHelper
-import com.cml.challenge.data.model.ProductModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
