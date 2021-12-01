@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.cml.challenge.core.data.ProductRepository
 import com.cml.challenge.app.framework.network.APIResponseProduct
 import com.cml.challenge.app.framework.network.ProductService
-import com.cml.challenge.core.data.ProductDataSource
 import kotlinx.coroutines.launch
 
 class DetailViewModel(private val query: String) : ViewModel() {
