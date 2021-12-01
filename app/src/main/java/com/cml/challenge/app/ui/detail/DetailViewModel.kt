@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cml.challenge.core.data.ProductRepository
 import com.cml.challenge.app.framework.network.APIResponseProduct
+import com.cml.challenge.app.framework.network.ProductService
+import com.cml.challenge.core.data.ProductDataSource
 import kotlinx.coroutines.launch
 
 class DetailViewModel(private val query: String) : ViewModel() {
@@ -17,7 +19,8 @@ class DetailViewModel(private val query: String) : ViewModel() {
     suspend fun search(query: String): APIResponseProduct {
 
         isLoading.postValue(true)
-        val repository = ProductRepository()
+
+        val repository = ProductRepository(ProductService())
         val result: APIResponseProduct? = repository.getDetailProduct(query)
         if(result != null){
             Log.i("***",result.body.pictures.size.toString())

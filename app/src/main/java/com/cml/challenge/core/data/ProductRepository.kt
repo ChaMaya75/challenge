@@ -6,12 +6,12 @@ import com.cml.challenge.app.framework.network.APIResponseSearch
 import com.cml.challenge.app.framework.network.ProductService
 import java.lang.Exception
 
-class ProductRepository {
-    private val api = ProductService()
+class ProductRepository (private val dataDataSource : ProductDataSource){
+    //private val api = ProductService()
     suspend fun getAllProducts(query: String): APIResponseSearch? {
         Log.i("***","getAllProducts")
         try {
-               return api.getProducts(query)
+               return dataDataSource.getAllProducts(query)
             }
         catch (e:Exception){
             return  null
@@ -20,7 +20,7 @@ class ProductRepository {
     suspend fun getDetailProduct(query: String): APIResponseProduct? {
         Log.i("***","getDetail")
         try {
-            return api.getDetail(query)
+            return dataDataSource.getDetailProduct(query)
         }
         catch (e:Exception){
             return  null
