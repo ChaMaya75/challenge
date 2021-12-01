@@ -7,12 +7,12 @@
 
         <variable
             name="productviewmodel"
-            type="com.cml.challenge.ui.products.ProductViewModel" />
+            type="com.cml.challenge.app.ui.products.ProductViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.products.ProductsFragment">
+        tools:context=".app.ui.products.ProductsFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvProducts"

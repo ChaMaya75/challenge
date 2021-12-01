@@ -8,13 +8,13 @@
 
         <variable
             name="detailViewModel"
-            type="com.cml.challenge.ui.detail.DetailViewModel" />
+            type="com.cml.challenge.app.ui.detail.DetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.products.ProductsFragment">
+        tools:context=".app.ui.products.ProductsFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
