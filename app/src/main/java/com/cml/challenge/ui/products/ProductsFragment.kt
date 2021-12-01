@@ -1,21 +1,17 @@
 package com.cml.challenge.ui.products
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.cml.challenge.R
-import com.cml.challenge.data.network.ItemSearch
+import com.cml.challenge.data.model.ProductModel
 import com.cml.challenge.databinding.FragmentProductsBinding
-import com.cml.challenge.utilities.Utilities.Companion.getLastVisiblePosition
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 import org.koin.core.parameter.parametersOf
@@ -30,7 +26,7 @@ class ProductsFragment : Fragment() {
     private lateinit var binding: FragmentProductsBinding
 
     private lateinit var adapter: ProductAdapter
-    private val itemsProducts = mutableListOf<ItemSearch>()
+    private val itemsProducts = mutableListOf<ProductModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

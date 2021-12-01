@@ -6,15 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cml.challenge.data.ProductRepository
 import com.cml.challenge.data.network.APIResponseSearch
-import com.cml.challenge.data.network.ItemSearch
+import com.cml.challenge.data.model.ProductModel
 import kotlinx.coroutines.launch
 
 class ProductViewModel(private val query: String) : ViewModel() {
 
     val isLoading = MutableLiveData<Boolean>()
-    val productModel = MutableLiveData<List<ItemSearch>>()
+    val productModel = MutableLiveData<List<ProductModel>>()
 
-    suspend fun search(query: String):List<ItemSearch> {
+    suspend fun search(query: String):List<ProductModel> {
         isLoading.postValue(true)
             val repository = ProductRepository()
             val result: APIResponseSearch? = repository.getAllProducts(query)
@@ -45,7 +45,7 @@ class ProductViewModel(private val query: String) : ViewModel() {
     }
     private fun searchProduct(){
         viewModelScope.launch {
-            val productos : List<ItemSearch> = search(query)
+            val productos : List<ProductModel> = search(query)
             productModel.value = productos
         }
 

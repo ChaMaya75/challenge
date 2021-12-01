@@ -4,8 +4,7 @@ import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.cml.challenge.R
-import com.cml.challenge.data.network.ItemSearch
-import com.cml.challenge.databinding.ItemDetailBinding
+import com.cml.challenge.data.model.ProductModel
 import com.cml.challenge.databinding.ItemProductBinding
 import com.squareup.picasso.Picasso
 import java.net.URL
@@ -16,7 +15,7 @@ class ProductViewHolder (view:View,listener:ProductAdapter.onItemClickListener):
 
     private val binding = ItemProductBinding.bind(view)
 
-    fun bind(item:ItemSearch){
+    fun bind(item: ProductModel){
 
         binding.tvTitulo.text = item.title
         val format: NumberFormat = NumberFormat.getCurrencyInstance(Locale.US)

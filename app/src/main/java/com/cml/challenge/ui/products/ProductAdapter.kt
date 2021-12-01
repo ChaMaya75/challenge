@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cml.challenge.R
-import com.cml.challenge.data.network.ItemSearch
+import com.cml.challenge.data.model.ProductModel
 
-class ProductAdapter (val items:List<ItemSearch>): RecyclerView.Adapter<ProductViewHolder>() {
+class ProductAdapter (val items:List<ProductModel>): RecyclerView.Adapter<ProductViewHolder>() {
 
     private lateinit var mListener : onItemClickListener
 
@@ -28,7 +28,7 @@ class ProductAdapter (val items:List<ItemSearch>): RecyclerView.Adapter<ProductV
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        val item:ItemSearch = items[position]
+        val item: ProductModel = items[position]
         holder.bind(item)
     }
 

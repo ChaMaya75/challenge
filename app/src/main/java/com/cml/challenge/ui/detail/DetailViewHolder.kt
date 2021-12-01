@@ -4,7 +4,6 @@ import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.cml.challenge.R
-import com.cml.challenge.data.network.ItemSearch
 
 import com.cml.challenge.databinding.ItemDetailBinding
 import com.squareup.picasso.Picasso
