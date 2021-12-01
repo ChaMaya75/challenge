@@ -7,7 +7,7 @@ import com.cml.challenge.app.framework.network.ProductService
 import java.lang.Exception
 
 class ProductRepository (private val dataDataSource : ProductDataSource){
-    //private val api = ProductService()
+
     suspend fun getAllProducts(query: String): APIResponseSearch? {
         Log.i("***","getAllProducts")
         try {
