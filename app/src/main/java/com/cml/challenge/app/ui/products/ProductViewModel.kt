@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cml.challenge.core.data.ProductRepository
 import com.cml.challenge.app.framework.network.APIResponseSearch
-import com.cml.challenge.core.data.model.ProductModel
+import com.cml.challenge.core.model.ProductModel
 import kotlinx.coroutines.launch
 
 class ProductViewModel(private val query: String) : ViewModel() {

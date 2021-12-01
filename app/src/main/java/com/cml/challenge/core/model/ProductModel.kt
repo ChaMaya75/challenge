@@ -1,4 +1,4 @@
-package com.cml.challenge.core.data.model
+package com.cml.challenge.core.model
 
 data class ProductModel(
     val id: String,

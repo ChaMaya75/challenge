@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cml.challenge.R
-import com.cml.challenge.core.data.model.ProductModel
+import com.cml.challenge.core.model.ProductModel
 
 class ProductAdapter (val items:List<ProductModel>): RecyclerView.Adapter<ProductViewHolder>() {
 

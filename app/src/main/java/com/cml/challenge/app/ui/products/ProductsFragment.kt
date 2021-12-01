@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cml.challenge.R
-import com.cml.challenge.core.data.model.ProductModel
+import com.cml.challenge.core.model.ProductModel
 import com.cml.challenge.databinding.FragmentProductsBinding
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel

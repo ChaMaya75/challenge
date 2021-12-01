@@ -4,7 +4,7 @@ import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.cml.challenge.R
-import com.cml.challenge.core.data.model.ProductModel
+import com.cml.challenge.core.model.ProductModel
 import com.cml.challenge.databinding.ItemProductBinding
 import com.squareup.picasso.Picasso
 import java.net.URL
