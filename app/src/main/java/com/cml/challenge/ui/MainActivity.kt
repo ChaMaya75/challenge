@@ -1,4 +1,4 @@
-package com.cml.challenge
+package com.cml.challenge.ui
 
 import android.os.Bundle
 import android.view.Menu
@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.cml.challenge.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,7 +37,9 @@ class MainActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_search, R.id.nav_about), drawerLayout)
+            R.id.nav_search,
+            R.id.nav_about
+        ), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
