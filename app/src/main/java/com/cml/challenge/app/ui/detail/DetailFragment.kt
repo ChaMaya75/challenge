@@ -63,6 +63,10 @@ class DetailFragment : Fragment() {
         detailFragmentViewModel.indeximageshow.observe(viewLifecycleOwner, Observer {
             binding.indexrv.text = it
         })
+        detailFragmentViewModel.isDetailValid.observe(viewLifecycleOwner, Observer {
+            binding.llDetail?.isVisible = it
+            binding.tvEmpty?.isVisible = !it
+        })
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

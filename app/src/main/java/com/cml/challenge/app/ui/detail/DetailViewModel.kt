@@ -16,26 +16,33 @@ class DetailViewModel(private val query: String) : ViewModel() {
     val isLoading = MutableLiveData<Boolean>()
     val detail = MutableLiveData<DetailModel>()
     val indeximageshow = MutableLiveData<String>()
+    val isDetailValid = MutableLiveData<Boolean>()
 
     suspend fun search(query: String): DetailModel? {
 
         isLoading.postValue(true)
 
-        //val repository = ProductRepository(ProductService())
-        val repository = ProductRepository(ProductTest())
+        //val repository = ProductRepository(ProductTest(0))  //Para pruebas y desarrollo
+                                                            //0 regresa null
+                                                            //otro valor regresa un detalle valido
+
+        val repository = ProductRepository(ProductService())   //Productivo
+
         var result: DetailModel? = GetDetailProduct(repository).invoke(query)
         if(result != null){
-            Log.i("***",result.pictures.size.toString())
 
+            Log.i("***",result.pictures.size.toString())
             result.pictures.forEach{
                 Log.i("***", it.secure_url.toString())
             }
+            isDetailValid.postValue(true)
             isLoading.postValue(false)
             return result
         }else {
             Log.i("***", "Fallo al recuperar objeto")
             isLoading.postValue(false)
         }
+        isDetailValid.postValue(false)
         return result
     }
     init {

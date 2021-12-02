@@ -19,8 +19,13 @@ class ProductViewModel(private val query: String) : ViewModel() {
 
     suspend fun search(query: String):List<ProductModel> {
         isLoading.postValue(true)
-            //val repository = ProductRepository(ProductService())
-            val repository = ProductRepository(ProductTest())
+
+            //val repository = ProductRepository(ProductTest(0))          //Para pruebas y desarollo
+                                                                        //0 regresa null
+                                                                        //1 regresa lista vacia
+                                                                        // otro numero regresa 3 productos
+
+            val repository = ProductRepository(ProductService())    //Productivo
             val result: List<ProductModel>? = GetAllProducts(repository).invoke(query)
             if(result != null){
                 Log.i("***",result.size.toString())
