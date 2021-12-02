@@ -7,24 +7,25 @@ import androidx.lifecycle.viewModelScope
 import com.cml.challenge.core.data.ProductRepository
 import com.cml.challenge.app.framework.network.APIResponseProduct
 import com.cml.challenge.app.framework.network.ProductService
+import com.cml.challenge.core.model.DetailModel
 import kotlinx.coroutines.launch
 
 class DetailViewModel(private val query: String) : ViewModel() {
 
     val isLoading = MutableLiveData<Boolean>()
-    val detail = MutableLiveData<APIResponseProduct>()
+    val detail = MutableLiveData<DetailModel>()
     val indeximageshow = MutableLiveData<String>()
 
-    suspend fun search(query: String): APIResponseProduct {
+    suspend fun search(query: String): DetailModel {
 
         isLoading.postValue(true)
 
         val repository = ProductRepository(ProductService())
-        val result: APIResponseProduct? = repository.getDetailProduct(query)
+        val result: DetailModel? = repository.getDetailProduct(query)
         if(result != null){
-            Log.i("***",result.body.pictures.size.toString())
+            Log.i("***",result.pictures.size.toString())
 
-            result.body.pictures.forEach{
+            result.pictures.forEach{
                 Log.i("***", it.secure_url.toString())
             }
             isLoading.postValue(false)
@@ -41,7 +42,7 @@ class DetailViewModel(private val query: String) : ViewModel() {
     }
     private fun searchDetail(){
         viewModelScope.launch {
-            val detailProduct : APIResponseProduct = search(query)
+            val detailProduct : DetailModel = search(query)
             detail.value = detailProduct
         }
     }

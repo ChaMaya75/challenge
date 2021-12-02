@@ -44,19 +44,19 @@ class DetailFragment : Fragment() {
         detailFragmentViewModel.detail.observe(viewLifecycleOwner, Observer {
             adapter = DetailAdapter(it)
             binding.rvDetail.adapter = adapter
-            binding.tvTitle?.text = it.body.title
+            binding.tvTitle?.text = it.title
             val format: NumberFormat = NumberFormat.getCurrencyInstance(Locale.US)
-            binding.tvPrice.text = format.format(it.body.price)
-            binding.tvAvailable.text = it.body.available_quantity.toString()
-            binding.tvSold.text = it.body.sold_quantity.toString()
-            if(it.body.condition.equals("new")){
+            binding.tvPrice.text = format.format(it.price)
+            binding.tvAvailable.text = it.available_quantity.toString()
+            binding.tvSold.text = it.sold_quantity.toString()
+            if(it.condition.equals("new")){
                 binding.tvCondition.text = getString(R.string.lbl_new)
             }else{
                 binding.tvCondition.text = getString(R.string.lbl_notnew)
             }
 
             if(binding.indexrv.text.isNullOrEmpty())
-                binding.indexrv.text = "1/${it.body.pictures.size}"
+                binding.indexrv.text = "1/${it.pictures.size}"
 
 
         })

@@ -18,16 +18,16 @@ class ProductViewModel(private val query: String) : ViewModel() {
     suspend fun search(query: String):List<ProductModel> {
         isLoading.postValue(true)
             val repository = ProductRepository(ProductService())
-            val result: APIResponseSearch? = repository.getAllProducts(query)
+            val result: List<ProductModel>? = repository.getAllProducts(query)
             if(result != null){
-                Log.i("***",result.results.size.toString())
+                Log.i("***",result.size.toString())
 
-                result.results.forEach{
+                result.forEach{
                     Log.i("***", it.id)
                     it.id
                 }
                 isLoading.postValue(false)
-                return result.results
+                return result
             }else {
                 Log.i("***", "Fallo al recuperar la lista")
                 isLoading.postValue(false)
