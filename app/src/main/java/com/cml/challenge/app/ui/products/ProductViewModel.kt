@@ -8,6 +8,7 @@ import com.cml.challenge.core.data.ProductRepository
 import com.cml.challenge.app.framework.network.ProductService
 import com.cml.challenge.core.model.ProductModel
 import com.cml.challenge.core.usecase.GetAllProducts
+import com.cml.challenge.test.ProductTest
 import kotlinx.coroutines.launch
 
 class ProductViewModel(private val query: String) : ViewModel() {
@@ -17,7 +18,8 @@ class ProductViewModel(private val query: String) : ViewModel() {
 
     suspend fun search(query: String):List<ProductModel> {
         isLoading.postValue(true)
-            val repository = ProductRepository(ProductService())
+            //val repository = ProductRepository(ProductService())
+            val repository = ProductRepository(ProductTest())
             val result: List<ProductModel>? = GetAllProducts(repository).invoke(query)
             if(result != null){
                 Log.i("***",result.size.toString())
