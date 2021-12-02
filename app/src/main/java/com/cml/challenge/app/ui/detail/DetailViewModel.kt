@@ -8,6 +8,7 @@ import com.cml.challenge.core.data.ProductRepository
 import com.cml.challenge.app.framework.network.APIResponseProduct
 import com.cml.challenge.app.framework.network.ProductService
 import com.cml.challenge.core.model.DetailModel
+import com.cml.challenge.core.usecase.GetDetailProduct
 import kotlinx.coroutines.launch
 
 class DetailViewModel(private val query: String) : ViewModel() {
@@ -21,7 +22,7 @@ class DetailViewModel(private val query: String) : ViewModel() {
         isLoading.postValue(true)
 
         val repository = ProductRepository(ProductService())
-        val result: DetailModel? = repository.getDetailProduct(query)
+        val result: DetailModel? = GetDetailProduct(repository).invoke(query)
         if(result != null){
             Log.i("***",result.pictures.size.toString())
 
