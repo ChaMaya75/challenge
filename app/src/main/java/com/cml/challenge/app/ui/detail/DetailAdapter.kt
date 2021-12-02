@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cml.challenge.R
-import com.cml.challenge.app.framework.network.APIResponseProduct
 import com.cml.challenge.core.model.DetailModel
 
 class DetailAdapter(private val itemDetail: DetailModel?) : RecyclerView.Adapter<DetailViewHolder>(){

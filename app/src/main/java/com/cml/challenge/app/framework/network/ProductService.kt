@@ -12,7 +12,7 @@ class ProductService : ProductDataSource{
     private val retrofit = RetrofitHelper.getRetrofit()
     override suspend fun getAllProducts(query: String): List<ProductModel>? {
         return withContext(Dispatchers.IO) {
-            val response: Response<APIResponseSearch> =
+            val response: Response<APIResponseProducts> =
                 retrofit.create(ProductApiClient::class.java).searchItems(query)
             Log.i("***","getProducts")
             response.body()?.results
@@ -21,10 +21,10 @@ class ProductService : ProductDataSource{
 
     override suspend fun getDetailProduct(query: String): DetailModel? {
         return withContext(Dispatchers.IO) {
-            val response: Response<List<APIResponseProduct>> =
+            val responseDetail: Response<List<APIResponseDetailProduct>> =
                 retrofit.create(ProductApiClient::class.java).getItem(query)
             Log.i("***","getDetail")
-            response.body()?.get(0)?.body
+            responseDetail.body()?.get(0)?.body
         }
     }
 }

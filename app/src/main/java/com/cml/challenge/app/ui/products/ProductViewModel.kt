@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cml.challenge.core.data.ProductRepository
-import com.cml.challenge.app.framework.network.APIResponseSearch
 import com.cml.challenge.app.framework.network.ProductService
 import com.cml.challenge.core.model.ProductModel
 import com.cml.challenge.core.usecase.GetAllProducts

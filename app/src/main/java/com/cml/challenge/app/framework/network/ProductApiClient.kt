@@ -8,10 +8,10 @@ interface ProductApiClient {
     @GET("/sites/MLM/search?")
     suspend fun searchItems(
         @Query("q") textSearch: String
-    ): Response<APIResponseSearch>
+    ): Response<APIResponseProducts>
 
     @GET("/items?")
     suspend fun getItem(
         @Query("ids") idItem: String
-    ): Response<List<APIResponseProduct>>
+    ): Response<List<APIResponseDetailProduct>>
 }
