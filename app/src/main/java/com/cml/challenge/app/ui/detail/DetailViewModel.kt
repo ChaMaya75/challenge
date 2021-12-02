@@ -17,13 +17,13 @@ class DetailViewModel(private val query: String) : ViewModel() {
     val detail = MutableLiveData<DetailModel>()
     val indeximageshow = MutableLiveData<String>()
 
-    suspend fun search(query: String): DetailModel {
+    suspend fun search(query: String): DetailModel? {
 
         isLoading.postValue(true)
 
         //val repository = ProductRepository(ProductService())
         val repository = ProductRepository(ProductTest())
-        val result: DetailModel? = GetDetailProduct(repository).invoke(query)
+        var result: DetailModel? = GetDetailProduct(repository).invoke(query)
         if(result != null){
             Log.i("***",result.pictures.size.toString())
 
@@ -36,7 +36,7 @@ class DetailViewModel(private val query: String) : ViewModel() {
             Log.i("***", "Fallo al recuperar objeto")
             isLoading.postValue(false)
         }
-        return result!!
+        return result
     }
     init {
         Log.i("***","ProducModel Creado")
@@ -44,8 +44,9 @@ class DetailViewModel(private val query: String) : ViewModel() {
     }
     private fun searchDetail(){
         viewModelScope.launch {
-            val detailProduct : DetailModel = search(query)
-            detail.value = detailProduct
+            val detailProduct : DetailModel? = search(query)
+            if(detailProduct != null)
+                detail.value = detailProduct
         }
     }
 }

@@ -33,7 +33,7 @@ class ProductTest : ProductDataSource {
 
     override suspend fun getDetailProduct(query: String): DetailModel? {
 
-        val detalProduct = DetailModel(        true,
+        /*val detalProduct = DetailModel(        true,
             5,
             "new",
             "MLM833251578",
@@ -47,9 +47,9 @@ class ProductTest : ProductDataSource {
             34,
             "http://mlm-s1-p.mlstatic.com/799580-MLA40692342178_022020-I.jpg",
             "Nintendo Switch 32gb Standard Gris Y Negro",
-            "30 dias con el fabricante")
+            "30 dias con el fabricante")*/
 
 
-        return detalProduct
+        return null
     }
 }

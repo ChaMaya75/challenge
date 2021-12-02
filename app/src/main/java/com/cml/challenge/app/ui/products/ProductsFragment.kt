@@ -37,14 +37,15 @@ class ProductsFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        //productViewModel =
-          //      ViewModelProvider(this).get(ProductViewModel::class.java)
-        //productViewModel.query = arguments?.get("search").toString()
 
         binding = FragmentProductsBinding.inflate(inflater, container, false)
-
         productViewModel.isLoading.observe(viewLifecycleOwner, Observer {
             binding.loading.isVisible = it
+        })
+        productViewModel.isEmpty.observe(viewLifecycleOwner, Observer {
+            /*if(it)
+                binding.tvEmpty.visibility = View.VISIBLE*/
+            binding.tvEmpty.isVisible = it
         })
         productViewModel.productModel.observe(viewLifecycleOwner, Observer {
             adapter = ProductAdapter(it)

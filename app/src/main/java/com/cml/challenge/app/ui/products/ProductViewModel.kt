@@ -15,6 +15,7 @@ class ProductViewModel(private val query: String) : ViewModel() {
 
     val isLoading = MutableLiveData<Boolean>()
     val productModel = MutableLiveData<List<ProductModel>>()
+    val isEmpty = MutableLiveData<Boolean>()
 
     suspend fun search(query: String):List<ProductModel> {
         isLoading.postValue(true)
@@ -28,12 +29,15 @@ class ProductViewModel(private val query: String) : ViewModel() {
                     Log.i("***", it.id)
                     it.id
                 }
+                isEmpty.postValue(result.isEmpty())
                 isLoading.postValue(false)
                 return result
             }else {
+                isEmpty.postValue(true)
                 Log.i("***", "Fallo al recuperar la lista")
                 isLoading.postValue(false)
             }
+        isEmpty.postValue(true)
         return emptyList()
     }
     init {
